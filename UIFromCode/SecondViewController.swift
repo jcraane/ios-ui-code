@@ -17,6 +17,7 @@ class SecondViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(CustomCell.classForCoder(), forCellReuseIdentifier: String(describing: CustomCell.self))
         self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -35,6 +36,7 @@ extension SecondViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for:indexPath) as! CustomCell
+        return cell
     }
 }
